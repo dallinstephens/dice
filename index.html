@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#dice-container {
+  width:33vw;
+  margin: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left: 10%;
+  margin-right: 10%;
+
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+}
+
+.col-3 {width: calc((1/3)*100%);}
+
+.dice1, .dice2 {
+	position:absolute;
+  top:0;
+}
+
+.dice3, .dice4 {
+	position:absolute;
+  top:14vw;
+}
+
+.dice1 > .cube {
+  font-size: 4vw;
+  width: 2em;
+  margin: 2.5em 1em;
+  transform-style: preserve-3d;
+  -webkit-animation-name: dice1; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1000s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: dice1;
+  animation-duration: 1000s;
+  animation-iteration-count: infinite;
+}
+
+.dice2 > .cube {
+  font-size: 4vw;
+  width: 2em;
+  margin: 2.5em 5em;
+  transform-style: preserve-3d;
+  -webkit-animation-name: dice2; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1000s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: dice2;
+  animation-duration: 1000s;
+  animation-iteration-count: infinite;
+}
+
+.dice3 > .cube {
+  font-size: 4vw;
+  width: 2em;
+  margin: 2.5em 1em;
+  transform-style: preserve-3d;
+  -webkit-animation-name: dice3; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1000s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: dice3;
+  animation-duration: 1000s;
+  animation-iteration-count: infinite;
+}
+
+.dice4 > .cube {
+  font-size: 4vw;
+  width: 2em;
+  margin: 2.5em 5em;
+  transform-style: preserve-3d;
+  -webkit-animation-name: dice4; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1000s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: dice4;
+  animation-duration: 1000s;
+  animation-iteration-count: infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes dice1 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(180000deg);}
+}
+
+/* Standard syntax */
+@keyframes dice1 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(180000deg);}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes dice2 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(-180000deg);}
+}
+
+/* Standard syntax */
+@keyframes dice2 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(-180000deg);}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes dice3 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(180000deg);}
+}
+
+/* Standard syntax */
+@keyframes dice3 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(180000deg);}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes dice4 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(-180000deg);}
+}
+
+/* Standard syntax */
+@keyframes dice4 {
+  from {transform: rotateX(0deg) rotateY(0deg);}
+  to {transform: rotateX(36000deg) rotateY(-180000deg);}
+}
+
+.dice1 > div > .side {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: hsla(0, 100%, 40%, 0.7);
+  border: 1px solid red;
+}
+
+.dice2 > div > .side {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: hsla(240, 100%, 65%, 0.7);
+  border: 1px solid #e6f9ff;
+}
+
+.dice3 > div > .side {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: hsla(120, 100%, 15%, 0.7);
+  border: 1px solid #00ff00;
+}
+
+.dice4 > div > .side {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: hsla(0, 0%, 100%, 0.97);
+  border: 1px solid black;
+}
+
+.front {transform: translateZ(1em);}
+.top {transform: rotateX(90deg) translateZ(1em);}
+.right {transform: rotateY(90deg) translateZ(1em);}
+.left {transform: rotateY(-90deg) translateZ(1em);}
+.bottom {transform: rotateX(-90deg) translateZ(1em);}
+.back {transform: rotateY(-180deg) translateZ(1em);}
+
+.top-dots {
+	position:relative;
+    top:-25%;
+}
+
+.middle-dots {
+	position:relative;
+    top:-90%;
+}
+
+.bottom-dots {
+	position:relative;
+    top:-155%;
+}
+
+.top-dots, .middle-dots, .bottom-dots {
+    color:white;
+    font-size:1.6em
+}
+
+.dice4 > div > div > .top-dots, .dice4 > div > div > .middle-dots, .dice4 > div > div > .bottom-dots {
+    color:black;
+    font-size:1.6em
+}
+</style>
+</head>
+<body>
+<div id="dice-container">
+  <div class="dice1">
+    <div class="cube">
+      <!-- 1 Dot -->
+      <div class="side front">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 2 Dots -->
+      <div class="side back">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 3 Dots -->
+      <div class="side right">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 4 Dots -->
+      <div class="side left">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 5 Dots -->
+      <div class="side top">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 6 Dots -->
+      <div class="side bottom">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dice2">
+    <div class="cube">
+      <!-- 1 Dot -->
+      <div class="side front">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 2 Dots -->
+      <div class="side back">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 3 Dots -->
+      <div class="side left">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 4 Dots -->
+      <div class="side right">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 5 Dots -->
+      <div class="side top">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 6 Dots -->
+      <div class="side bottom">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dice3">
+    <div class="cube">
+      <!-- 1 Dot -->
+      <div class="side front">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 2 Dots -->
+      <div class="side back">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 3 Dots -->
+      <div class="side right">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 4 Dots -->
+      <div class="side left">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 5 Dots -->
+      <div class="side top">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 6 Dots -->
+      <div class="side bottom">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dice4">
+    <div class="cube">
+      <!-- 1 Dot -->
+      <div class="side front">
+        <div class="row top-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+      </div>
+      <!-- 2 Dots -->
+      <div class="side back">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 3 Dots -->
+      <div class="side left">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 4 Dots -->
+      <div class="side right">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 5 Dots -->
+      <div class="side top">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+      <!-- 6 Dots -->
+      <div class="side bottom">
+        <div class="row top-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row middle-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+        <div class="row bottom-dots">
+          <div class="col-3">&bull;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&bull;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
